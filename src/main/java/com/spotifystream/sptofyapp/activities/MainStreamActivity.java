@@ -5,15 +5,13 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
-import com.google.gson.JsonObject;
-import com.koushikdutta.async.future.FutureCallback;
-import com.koushikdutta.ion.Ion;
 import com.spotifystream.sptofyapp.R;
 import com.spotifystream.sptofyapp.fragments.MainStreamFragment;
-import com.spotifystream.sptofyapp.fundamentals.SpotifyApp;
+import com.spotifystream.sptofyapp.models.Track;
 
-public class MainStreamActivity extends ActionBarActivity implements MainStreamFragment.onAlbumTappedListener {
+public class MainStreamActivity extends ActionBarActivity implements MainStreamFragment.OnAlbumTappedListener {
 
     private final String TAG = MainStreamActivity.class.getSimpleName();
 
@@ -21,11 +19,11 @@ public class MainStreamActivity extends ActionBarActivity implements MainStreamF
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_stream);
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new MainStreamFragment())
-                    .commit();
-        }
+
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.container, new MainStreamFragment())
+                .commit();
+
     }
 
 
@@ -51,8 +49,9 @@ public class MainStreamActivity extends ActionBarActivity implements MainStreamF
 
     //fragment interaction
     @Override
-    public void onAlbumSelected(String id) {
-
+    public void onAlbumSelected(Track selectedTrack) {
+        Toast.makeText(this,selectedTrack.toString(),Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "CLICKED "+selectedTrack.toString());
     }
 
 
