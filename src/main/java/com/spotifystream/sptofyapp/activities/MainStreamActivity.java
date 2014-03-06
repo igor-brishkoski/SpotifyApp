@@ -2,13 +2,20 @@ package com.spotifystream.sptofyapp.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.gson.JsonObject;
+import com.koushikdutta.async.future.FutureCallback;
+import com.koushikdutta.ion.Ion;
 import com.spotifystream.sptofyapp.R;
 import com.spotifystream.sptofyapp.fragments.MainStreamFragment;
+import com.spotifystream.sptofyapp.fundamentals.SpotifyApp;
 
-public class MainStreamActivity extends ActionBarActivity {
+public class MainStreamActivity extends ActionBarActivity implements MainStreamFragment.onAlbumTappedListener {
+
+    private final String TAG = MainStreamActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,4 +48,12 @@ public class MainStreamActivity extends ActionBarActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    //fragment interaction
+    @Override
+    public void onAlbumSelected(String id) {
+
+    }
+
+
 }

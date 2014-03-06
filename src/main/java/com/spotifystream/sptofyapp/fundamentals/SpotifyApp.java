@@ -7,8 +7,12 @@ import android.preference.PreferenceManager;
 
 public class SpotifyApp extends Application{
 
+    private final String TAG = SpotifyApp.class.getSimpleName();
+    public static final String SPOTIFY_URL = "http://charts.spotify.com/api/charts/most_streamed/us/";
+
     private static SharedPreferences sharedPreferences;
     private static Context context;
+
 
     @Override
     public void onCreate() {
@@ -16,7 +20,6 @@ public class SpotifyApp extends Application{
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         context = this;
-
     }
 
     /**
@@ -32,4 +35,6 @@ public class SpotifyApp extends Application{
     public static Context getContext() {
         return context;
     }
+
+
 }
