@@ -72,9 +72,9 @@ public class MainStreamFragment extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        try{
+        try {
             albumTappedListener = (OnAlbumTappedListener) activity;
-        }catch (ClassCastException e){
+        } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement OnFragmentSelectedImageListener");
         }
@@ -83,7 +83,7 @@ public class MainStreamFragment extends Fragment {
     public void readJson() {
         final Gson gson = new Gson();
 
-        Ion.with(getActivity(), SpotifyConstants.SPOTIFY_URL + sharedPreferences.getString(SpotifyConstants.CURRENT_STREAM_DATE, SpotifyConstants.LATEST))
+        Ion.with(getActivity(), SpotifyConstants.SPOTIFY_MOSTSTREAMED_URL + sharedPreferences.getString(SpotifyConstants.CURRENT_STREAM_DATE, SpotifyConstants.LATEST))
                 .asJsonObject()
                 .setCallback(new FutureCallback<JsonObject>() {
                     @Override
@@ -98,13 +98,13 @@ public class MainStreamFragment extends Fragment {
                         }
 
                         sharedPreferences.edit()
-                                .putString(SpotifyConstants.CURRENT_STREAM_DATE,result.get("prevDate").getAsString())
-                                .putBoolean(SpotifyConstants.LOADING_NEW_ALBUMS,true)
+                                .putString(SpotifyConstants.CURRENT_STREAM_DATE, result.get("prevDate").getAsString())
+                                .putBoolean(SpotifyConstants.LOADING_NEW_ALBUMS, true)
                                 .commit();
 
                         mainStreamGridAdapter.refersh(newtracks);
 
-                        Log.d(TAG,SpotifyConstants.SPOTIFY_URL+sharedPreferences.getString(SpotifyConstants.CURRENT_STREAM_DATE,"NO"));
+                        Log.d(TAG, SpotifyConstants.SPOTIFY_MOSTSTREAMED_URL + sharedPreferences.getString(SpotifyConstants.CURRENT_STREAM_DATE, "NO"));
                     }
 
                 });

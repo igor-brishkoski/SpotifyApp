@@ -41,17 +41,17 @@ public class MainStreamGridAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        if(convertView == null){
+        if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) SpotifyApp.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.track_layout,null);
+            convertView = inflater.inflate(R.layout.track_layout, null);
         }
-            ImageView albumArt = (ImageView) convertView.findViewById(R.id.iv_mainstream_album_art);
-            loadAlbumArt(albumArt, tracks.get(position).getArtwork_url());
+        ImageView albumArt = (ImageView) convertView.findViewById(R.id.iv_mainstream_album_art);
+        loadAlbumArt(albumArt, tracks.get(position).getArtwork_url());
 
         return convertView;
     }
 
-    private void loadAlbumArt(ImageView imageView, String url){
+    private void loadAlbumArt(ImageView imageView, String url) {
         Ion.with(imageView)
                 .placeholder(R.drawable.ic_launcher)
                 .error(R.drawable.ic_launcher)
@@ -62,6 +62,6 @@ public class MainStreamGridAdapter extends BaseAdapter {
         //tracks.clear();
         tracks.addAll(newTracks);
         notifyDataSetChanged();
-        Log.d(TAG, "TOtal tracks"+tracks.size());
+        Log.d(TAG, "TOtal tracks" + tracks.size());
     }
 }

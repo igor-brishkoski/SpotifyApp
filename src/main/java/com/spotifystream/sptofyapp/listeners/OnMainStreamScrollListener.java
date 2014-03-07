@@ -9,7 +9,7 @@ import com.spotifystream.sptofyapp.fundamentals.SpotifyApp;
 import com.spotifystream.sptofyapp.fundamentals.SpotifyConstants;
 
 
-public class OnMainStreamScrollListener implements AbsListView.OnScrollListener{
+public class OnMainStreamScrollListener implements AbsListView.OnScrollListener {
     private final String TAG = OnMainStreamScrollListener.class.getSimpleName();
 
     SharedPreferences sharedPreferences;
@@ -32,9 +32,9 @@ public class OnMainStreamScrollListener implements AbsListView.OnScrollListener{
     @Override
     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
 
-        if((firstVisibleItem+visibleItemCount)>totalItemCount-5 && totalItemCount!=0 && sharedPreferences.getBoolean(SpotifyConstants.LOADING_NEW_ALBUMS,false)){
+        if ((firstVisibleItem + visibleItemCount) > totalItemCount - 5 && totalItemCount != 0 && sharedPreferences.getBoolean(SpotifyConstants.LOADING_NEW_ALBUMS, false)) {
             sharedPreferences.edit()
-                    .putBoolean(SpotifyConstants.LOADING_NEW_ALBUMS,false)
+                    .putBoolean(SpotifyConstants.LOADING_NEW_ALBUMS, false)
                     .commit();
             mainStreamFragment.readJson();
         }

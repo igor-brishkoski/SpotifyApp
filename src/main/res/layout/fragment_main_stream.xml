@@ -12,10 +12,10 @@
        android:id="@+id/gv_mainstream"
        android:layout_width="match_parent"
        android:layout_height="match_parent"
-       android:columnWidth="100dp"
+       android:columnWidth="@dimen/album_main_grid_size"
        android:numColumns="auto_fit"
-       android:verticalSpacing="5dp"
-       android:horizontalSpacing="5dp"
+       android:verticalSpacing="@dimen/grid_spacing"
+       android:horizontalSpacing="@dimen/grid_spacing"
        android:stretchMode="spacingWidth"
        android:gravity="center">
        </GridView>

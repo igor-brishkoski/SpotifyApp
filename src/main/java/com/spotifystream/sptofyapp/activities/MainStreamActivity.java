@@ -1,5 +1,6 @@
 package com.spotifystream.sptofyapp.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -7,8 +8,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.spotifystream.sptofyapp.R;
 import com.spotifystream.sptofyapp.fragments.MainStreamFragment;
+import com.spotifystream.sptofyapp.fundamentals.SpotifyConstants;
 import com.spotifystream.sptofyapp.models.Track;
 
 public class MainStreamActivity extends ActionBarActivity implements MainStreamFragment.OnAlbumTappedListener {
@@ -50,8 +53,13 @@ public class MainStreamActivity extends ActionBarActivity implements MainStreamF
     //fragment interaction
     @Override
     public void onAlbumSelected(Track selectedTrack) {
-        Toast.makeText(this,selectedTrack.toString(),Toast.LENGTH_SHORT).show();
-        Log.d(TAG, "CLICKED "+selectedTrack.toString());
+        Gson gson = new Gson();
+        String trackDetails = gson.toJson(selectedTrack,Track.class);
+        /*Toast.makeText(this, selectedTrack.toString(), Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "CLICKED " + selectedTrack.toString());*/
+        Intent intent = new Intent(this, DetailsActivity.class);
+        intent.putExtra(SpotifyConstants.JSON_DETAILS,trackDetails);
+        startActivity(intent);
     }
 
 
